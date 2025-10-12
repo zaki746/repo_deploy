@@ -10,7 +10,7 @@ async function fetchIssues() {
     console.log(headers);
     
     
-    const response = await fetch(url, { headers });
+    const response = await fetch(url);
     let issues = await response.json();
 
     // Filter by date
