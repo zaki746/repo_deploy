@@ -1,0 +1,13 @@
+{
+  "name": "github-issue-sync",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "axios": "^1.12.2",
+    "dotenv": "^17.2.3",
+    "fs-extra": "^11.3.2"
+  },
+  "scripts": {
+    "sync": "node scripts/sync.js"
+  }
+}

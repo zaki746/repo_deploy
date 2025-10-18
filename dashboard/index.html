@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Issues Dashboard — Multi-repo</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <h1>Github Issues Dashboard</h1>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="repo-cards-wrap" id="repoCardsWrap" aria-hidden="false"></section>
+
+    <section class="controls panel">
+      <div class="control-row">
+        <div class="control">
+          <label>Repositories (click to select)</label>
+          <div class="repo-toolbar">
+            <input id="repoSearchInput" class="repo-search" type="search" placeholder="Filter repos by name" aria-label="Filter repositories" />
+            <div class="repo-actions">
+              <button id="selectAllReposBtn" class="btn sm" type="button">Select all</button>
+              <button id="clearReposBtn" class="btn sm" type="button">Clear</button>
+            </div>
+          </div>
+          <div id="repoButtons" class="repo-chips" aria-label="Repositories (click to select)"></div>
+          <div class="meta-hint"><span id="repoHint">Click a repo to include/exclude its issues in the table.</span> <span id="repoSelectedCount"></span></div>
+        </div>
+      </div>
+
+      <!-- Customized Filters Row -->
+      <div class="filters-title">Customized filters</div>
+      <div class="control-row filters-row">
+        <div class="control">
+          <label for="searchInput">Issue title contains</label>
+          <input id="searchInput" type="search" placeholder="e.g. login, performance, UI" />
+        </div>
+        <div class="control">
+          <label>Labels (multi)</label>
+          <div id="labelMulti" class="label-multi"></div>
+        </div>
+        <div class="control">
+          <label for="stateFilter">State</label>
+          <select id="stateFilter">
+            <option value="">All</option>
+            <option value="open">Open</option>
+            <option value="closed">Closed</option>
+          </select>
+        </div>
+        <div class="control">
+          <label for="rowsPerPage">Rows per page</label>
+          <select id="rowsPerPage">
+            <option value="10">10</option>
+            <option value="30" selected>30</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+          </select>
+        </div>
+        <div class="control actions-col">
+          <button id="applyBtn" class="btn sm primary">Apply</button>
+          <button id="clearBtn" class="btn sm">Clear</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="results">
+      <div id="summary" class="summary"></div>
+      
+      <!-- Table Container -->
+      <div class="table-container">
+        <table id="issuesTable" class="issues-table">
+          <thead>
+            <tr>
+              <th>Issue #</th>
+              <th>Title</th>
+              <th>State</th>
+              <th>Labels</th>
+              <th>Updated</th>
+              <th>Evidence</th>
+            </tr>
+          </thead>
+          <tbody id="issuesTableBody">
+          </tbody>
+        </table>
+      </div>
+      
+      <!-- Pagination Controls -->
+      <div class="pagination-container">
+        <div class="pagination-info">
+          <span id="paginationInfo">Showing 0-0 of 0 issues</span>
+        </div>
+        <div class="pagination-controls">
+          <button id="firstPage" class="btn pagination-btn" disabled>First</button>
+          <button id="prevPage" class="btn pagination-btn" disabled>Previous</button>
+          <span id="pageNumbers" class="page-numbers"></span>
+          <button id="nextPage" class="btn pagination-btn" disabled>Next</button>
+          <button id="lastPage" class="btn pagination-btn" disabled>Last</button>
+        </div>
+      </div>
+      
+      <div id="noResults" class="no-results hidden">No issues matched your filters.</div>
+    </section>
+  </main>
+
+  <!-- overlay -->
+  <div id="overlay" class="overlay hidden" role="dialog" aria-hidden="true">
+    <div class="overlay-frame">
+      <button id="closeOverlay" class="close">✕</button>
+      <img id="overlayImg" alt="evidence" />
+    </div>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
