@@ -25,7 +25,7 @@ jobs:
 
       - name: Run Sync Script
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: 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
           OWNER: zaki746
           REPOS: repo1,repo2
         run: node scripts/sync.js
