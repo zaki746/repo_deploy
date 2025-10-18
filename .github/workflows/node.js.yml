@@ -39,7 +39,7 @@ jobs:
       - name: Run Sync Script
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          OWNER: your-github-username-or-org
+          OWNER: zaki746
           REPOS: repo1,repo2
         run: |
           echo "Starting sync script..."
