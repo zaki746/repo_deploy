@@ -5,9 +5,9 @@ import axios from "axios";
 
 const token = process.env.GH_TOKEN;
 const owner = process.env.OWNER;
-console.log(token);
+console.log("token"+ token);
 const repos = process.env.REPOS.split(",");
-console.log(token);
+console.log("token"+token);
 
 if (!token || !owner || !repos.length) {
   console.error("❌ Missing environment variables. Please check .env file.");
