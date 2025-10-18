@@ -2,7 +2,7 @@ name: Sync Private Repos Issues
 
 on:
   schedule:
-    - cron: "*/2 * * * *"   # every 2 minutes
+    - cron: "*/2 * * * *"
   workflow_dispatch:
 
 permissions:
@@ -14,40 +14,21 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0  # needed for git push
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      - name: Show Node & NPM Version
-        run: |
-          node -v
-          npm -v
-
-      - name: List Files Before Install
-        run: ls -la
-
-      - name: Install Dependencies
-        run: |
-          npm ci
-          echo "Installed modules:"
-          ls -la node_modules
+      - name: Install dependencies
+        run: npm install axios fs-extra
 
       - name: Run Sync Script
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           OWNER: zaki746
           REPOS: repo1,repo2
-        run: |
-          echo "Starting sync script..."
-          node scripts/sync.js
-        continue-on-error: false   # fail the workflow if script errors
-
-      - name: Check Output Files
-        run: ls -la data/
+        run: node scripts/sync.js
 
       - name: Commit & Push if Changed
         run: |
@@ -55,8 +36,7 @@ jobs:
           git config --global user.email "action@github.com"
           git add data/
           if ! git diff --cached --quiet; then
-            echo "Changes detected. Committing..."
             git commit -m "Auto-update issues data"
             git push
           else
-            echo "No changes detected."
+            echo "No changes."
