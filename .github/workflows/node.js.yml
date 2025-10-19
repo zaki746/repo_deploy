@@ -2,7 +2,7 @@ name: Sync Private Repos Issues
 
 on:
   schedule:
-    - cron: "*/2 * * * *"
+    - cron: "0 */12 * * *"
   workflow_dispatch:
 
 permissions:
