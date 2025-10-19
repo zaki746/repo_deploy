@@ -26,8 +26,8 @@ jobs:
       - name: Run Sync Script
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          OWNER: zaki746
-          REPOS: repo1,repo2
+          OWNER: ${{ vars.OWNER }}
+          REPOS: ${{ vars.REPOS }}
         run: node scripts/sync.js
 
       - name: Commit & Push if Changed
