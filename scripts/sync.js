@@ -7,7 +7,6 @@ const token = process.env.GH_TOKEN;
 const owner = process.env.OWNER;
 const repos = process.env.REPOS.split(",");
 
-console.log("token"+token);
 
 if (!token || !owner || !repos.length) {
   console.error("❌ Missing environment variables. Please check .env file.");
